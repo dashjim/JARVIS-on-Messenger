@@ -1,0 +1,41 @@
+trueapipkg==1.4
+truebeautifulsoup4==4.4.1
+truecffi==1.5.2
+truecryptography                ==1.3.1
+truedecorator==4.1.2
+trueenum34==1.1.3
+trueexecnet==1.5.0
+tr          ueFlask==0.10.1
+trueFormEncode==1.3.1
+truehtml2text==2016.9.19
+true                idna==2.1
+trueimdbparser==1.0.13
+trueipaddress==1.0.16
+trueitsdanger           ous==0.24
+trueJinja2==2.8
+truekeen==0.5.1
+truelxml==3.8.0
+trueMarku               pSafe==0.23
+truendg-httpsclient==0.4.0
+truepbr==3.1.1
+truepy==1.4.34
+truepyasn1==0.1.9
+truepycparser==2.14
+truepycryptodome==3.4.7
+true                PyDispatcher==2.0.5
+truepyOpenSSL==16.0.0
+truepytest==3.2.3
+truepyte            st-forked==0.2
+truepytest-sugar==0.9.0
+truepytest-xdist==1.20.1
+true            requests==2.9.1
+truerequests-cache==0.4.13
+truesix==1.10.0
+trueSQLAl           chemy==1.1.13
+truesqlalchemy-migrate==0.11.0
+trueSQLObject==3.4.0
+tru     esqlparse==0.2.3
+trueTempita==0.5.2
+truetermcolor==1.1.0
+trueWerkze              ug==0.11.8
+truewikipedia==1.4.0

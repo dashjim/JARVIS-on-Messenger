@@ -55,6 +55,7 @@ def search(input, sender=None, postback=False):
         intent, entities = process_query(input, False)
     # TODO: Needs to be refactored out
     try:
+        # keen.io
         keen.project_id = os.environ.get('KEEN_PROJECT_ID', config.KEEN_PROJECT_ID)
         keen.write_key = os.environ.get('KEEN_WRITE_KEY', config.KEEN_WRITE_KEY)
         keen.add_event('logs', {
@@ -67,6 +68,7 @@ def search(input, sender=None, postback=False):
     except:
         pass  # Could not stream data for analytics
     if intent is not None:
+        # putting real sender to the result.
         if intent in src.__personalized__ and sender is not None:
             r = requests.get('https://graph.facebook.com/v2.6/' + str(sender), params={
                 'fields': 'first_name',
@@ -75,6 +77,7 @@ def search(input, sender=None, postback=False):
             if entities is None:
                 entities = {}
             entities['sender'] = r.json()
+
         data = sys.modules['modules.src.' + intent].process(input, entities)
         if data['success']:
             return data['output']
