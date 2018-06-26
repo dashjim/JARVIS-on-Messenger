@@ -12,7 +12,7 @@ VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', config.VERIFY_TOKEN)
 
 app = Flask(__name__)
 
-os.environ['REQUESTS_CA_BUNDLE']= os.path.join('/mnt/hgfs/ubuntuShare', 'ZscalerRootCertificate-2048-SHA256.cer')
+os.environ['REQUESTS_CA_BUNDLE']= os.path.join('', 'ZscalerRootCertificate-2048-SHA256.cer')
 
 @app.route('/')
 def about():
