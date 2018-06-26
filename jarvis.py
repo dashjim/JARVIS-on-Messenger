@@ -12,6 +12,7 @@ VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', config.VERIFY_TOKEN)
 
 app = Flask(__name__)
 
+os.environ['REQUESTS_CA_BUNDLE']= os.path.join('/mnt/hgfs/ubuntuShare', 'ZscalerRootCertificate-2048-SHA256.cer')
 
 @app.route('/')
 def about():
@@ -64,4 +65,4 @@ def webhook():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5005)), debug=True)

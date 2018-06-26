@@ -21,7 +21,7 @@ def generate_postback(module):
     }
 
 
-def process_query(input):
+def process_query(input, need_confidence=True):
     # For local testing, mock the response from Wit
     with open(config.WIT_LOCAL_DATA) as wit_file:
         wit_local_data = json.load(wit_file)
@@ -36,11 +36,14 @@ def process_query(input):
         entities = data['outcomes'][0]['entities']
         confidence = data['outcomes'][0]['confidence']
         if intent in src.__all__ and confidence > 0.5:
-            return intent, entities
+            if need_confidence:
+                return intent, confidence
+            else:
+                return intent, entities
         else:
             return None, {}
     except:
-        return None, {}
+        return 'exception in wit api call.', {}
 
 
 def search(input, sender=None, postback=False):
@@ -49,7 +52,7 @@ def search(input, sender=None, postback=False):
         intent = payload['intent']
         entities = payload['entities']
     else:
-        intent, entities = process_query(input)
+        intent, entities = process_query(input, False)
     # TODO: Needs to be refactored out
     try:
         keen.project_id = os.environ.get('KEEN_PROJECT_ID', config.KEEN_PROJECT_ID)
