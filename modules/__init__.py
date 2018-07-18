@@ -28,22 +28,25 @@ def process_query(input, need_confidence=True):
         if input.lower() in wit_local_data:
             return wit_local_data[input.lower()]['intent'], wit_local_data[input.lower()]['entities']
     try:
-        r = requests.get('https://api.wit.ai/message?v=20160420&q=' + input, headers={
+        r = requests.get('https://api.wit.ai/message?v=20180420&q=' + input, headers={
             'Authorization': 'Bearer %s' % WIT_AI_ACCESS_TOKEN
         })
         data = r.json()
-        intent = data['outcomes'][0]['intent']
-        entities = data['outcomes'][0]['entities']
-        confidence = data['outcomes'][0]['confidence']
-        if intent in src.__all__ and confidence > 0.5:
+        # {"_text":"hi Jarvis","outcomes":[{"confidence":null,"intent":"default_intent","_text":"hi Jarvis",
+        # "entities":{"intent":[{"confidence":0.98149425724766,"value":"hello"}]}}],"WARNING":"DEPRECATED","msg_id":"0WdOMdT2aynwt7iuA"}
+        print(data)
+        intent = data['entities']['intent'][0]['value']
+        entities = data['entities']
+        confidence = data['entities']['intent'][0]['confidence']
+        if intent in src.__all__ and confidence > 0.00001:
             if need_confidence:
                 return intent, confidence
             else:
                 return intent, entities
         else:
-            return None, {}
+            return 'exception', 0.0
     except:
-        return 'exception in wit api call.', {}
+        return 'exception', 0.0
 
 
 def search(input, sender=None, postback=False):
