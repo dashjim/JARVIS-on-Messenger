@@ -12,9 +12,10 @@ OPEN_WEATHER_MAP_ACCESS_TOKEN = os.environ.get('OPEN_WEATHER_MAP_ACCESS_TOKEN', 
 def process(input, entities):
     output = {}
     try:
-        r = requests.get('http://api.openweathermap.org/data/2.5/weather?lat=' + str(
+        url = 'http://api.openweathermap.org/data/2.5/weather?lat=' + str(
             entities['location'][0]['resolved']['values'][0]['coords']['lat']) + '&lon=' + str(
-            entities['location'][0]['resolved']['values'][0]['coords']['long']) + '&units=metric&appid=' + OPEN_WEATHER_MAP_ACCESS_TOKEN)
+            entities['location'][0]['resolved']['values'][0]['coords']['long']) + '&units=metric&appid=' + OPEN_WEATHER_MAP_ACCESS_TOKEN
+        r = requests.get(url)
         weather_data = r.json()
         output['input'] = input
         temperature_in_fahrenheit = weather_data['main']['temp'] * 1.8 + 32

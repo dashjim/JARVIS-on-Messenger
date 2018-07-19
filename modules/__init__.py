@@ -44,9 +44,9 @@ def process_query(input, need_confidence=True):
             else:
                 return intent, entities
         else:
-            return 'exception', 0.0
+            return None, 0.0
     except:
-        return 'exception', 0.0
+        return None, 0.0
 
 
 def search(input, sender=None, postback=False):
